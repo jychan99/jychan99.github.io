@@ -1,7 +1,3 @@
-theme: Kasper
-
-baseurl: ""
-
 lang: ko-KR
 
 timezone: Asia/Seoul
@@ -38,6 +34,7 @@ markdown: kramdown
 highlighter: rouge
 logo: false
 paginate: 15
+baseurl: ""
 domain_name: "http://jychan99.github.io"
 google_analytics: "UA-XXXXXXXX-X"
 plugins: [jekyll-paginate]
