@@ -1,47 +1,24 @@
-lang: ko-KR
+collections:
+  authors:
+    output: true
+  posts:
+    output: true
+    permalink: /posts/:title/
 
-timezone: Asia/Seoul
+javascript_enabled: true
 
-title: jychan99 blog
-
-tagline: jychan update
-
-name: Your New Jekyll Site
-
-description: Blogging
-meta_description: "Your New Jekyll Site, Blogging about stuffs"
-
-url: "https://jychan99.github.io"
-
-github:
-  username: jychan99
-
-social:
-  links:
-  - https://github.com/jychan99
-
-google_site_verification: 000
-
-google_analytics:
-  id: '000'              # Google Analytics ID입니다. 이 또한 이후 포스팅에서 다루겠습니다.
-  pv:           
-    proxy_endpoint:   
-    cache_path: 
-
-toc: true 
-
-markdown: kramdown
-highlighter: rouge
-logo: false
-paginate: 15
-baseurl: ""
-domain_name: "http://jychan99.github.io"
-google_analytics: "UA-XXXXXXXX-X"
-plugins: [jekyll-paginate]
-
-# Details for the RSS feed generator
-url: ""
-author: "Your Name"
-
-# Disqus config
-disqus-shortname: ""
+defaults:
+  - scope:
+      path: ""
+      type: "authors"
+    values:
+      layout: "author"
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+  - scope:
+      path: ""
+    values:
+      layout: "default"
