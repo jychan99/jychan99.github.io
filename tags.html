@@ -3,7 +3,7 @@ layout: default
 title: Tags
 ---
 
-<h1>Latest Posts</h1>
+<h1>Tags</h1>
 
 {% assign alldocs = site.documents %}
 {% assign alltags =  alldocs | map: 'tags' | join: ','  | split: ','  | group_by_exp: "tag","tag" %}
@@ -14,17 +14,31 @@ title: Tags
 
 <ul class="tag-box">
     {% for tag in alltags %}
-      <li><a href="#{{ tag.name | slugify }}">{{ tag.name }} : <span>{{ tag.size }}</span></a></li>
+      <li><a class="tag" href="#{{ tag.name | slugify }}">{{ tag.name }} : <span>{{ tag.size }}</span></a></li>
     {% endfor %}
 </ul>
 
 {% for tag in alltags %}
+<div class="tag-list" id="">
   <h2 class="nice-title" id="{{ tag.name }}">{{ tag.name }}</h2>
   <ol>
     {%- for document in alldocs -%}
-      {% if document.tags contains tag.name %}
-        <li><a href="{{ document.url }}">{{ document.title }}</a></li>
-      {% endif %}
+    {% if document.tags contains tag.name %}
+    <li><a href="{{ document.url }}">{{ document.title }}</a></li>
+    {% endif %}
     {% endfor %}
   </ol>
+</div>
 {% endfor %}
+<script>
+let selectedTag = window.location.hash;
+let tagLinks = document.querySelectorAll(".tag");
+  
+  tagLinks.forEach(function(link){
+    link.addEventListener("click",(event)=>{
+      alert(selectedTag);
+      event.preventDefault();
+      document.querySelector('.tag-list').setAttribute("id", selectedTag);
+    })
+  })
+</script>
