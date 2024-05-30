@@ -82,11 +82,13 @@ code, pre {
 
 a {
   color: #333;
+  text-decoration: none;
 }
 
 a:hover {
   background-color: #333;
   color: #eee;
+  text-decoration: underline;
 }
 
 .post-date {
@@ -139,10 +141,6 @@ blockquote {
   font-size: 1.125rem;
 }
 
-.tag-box {
-  text-transform: capitalize;
-}
-
 .nice-title {
   text-transform: capitalize;
 }
@@ -188,14 +186,6 @@ h4 {
 h5, h6 {
   margin: 0.75rem 0;
   letter-spacing: 0.5px;
-}
-
-
-section h3 {
-  margin-top: 40px;
-  font-size: 1.25rem;
-  color:orange;
-  cursor: pointer;
 }
 
 h3.home-page-heading {
@@ -312,3 +302,4 @@ table {
     font-size: 0.8rem;
   }
 }
+

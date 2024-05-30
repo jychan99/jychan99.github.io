@@ -4,41 +4,52 @@ title: Tags
 ---
 
 <h1>Tags</h1>
+<hr>
 
-{% assign alldocs = site.documents %}
+{% assign alldocs = site.documents | sort:'date' | reverse %}
 {% assign alltags =  alldocs | map: 'tags' | join: ','  | split: ','  | group_by_exp: "tag","tag" %}
 
-<p>
-  Articles on similar topics are grouped together by tags. Click on any tag to find all the articles 'tagged' with that tag.
-</p>
-
-<ul class="tag-box">
+<div class="tag-box">
+  <a class="All" href="#">Total({{alldocs.size}})</a>
+  <br>
     {% for tag in alltags %}
-      <li><a class="tag" href="#{{ tag.name | slugify }}">{{ tag.name }} : <span>{{ tag.size }}</span></a></li>
+      <a class="{{tag.name}}" href="#{{ tag.name | slugify }}">#{{ tag.name }}({{ tag.size }})</a>
     {% endfor %}
-</ul>
+</div>
 
 {% for tag in alltags %}
-<div class="tag-list" id="">
-  <h2 class="nice-title" id="{{ tag.name }}">{{ tag.name }}</h2>
+<div class="tag-list" id="{{ tag.name }}" hidden>
+  <h2 class="nice-title">{{ tag.name }}</h2>
   <ol>
-    {%- for document in alldocs -%}
+    {% for document in alldocs %}
     {% if document.tags contains tag.name %}
-    <li><a href="{{ document.url }}">{{ document.title }}</a></li>
+      <div class="post-wrapper" datetime="{{ document.date | date: "%Y-%m-%d" }}">
+        <time class="post-date">{{ document.date | date: "%B %d, %Y" }}</time>
+        <a class="post-link" href="{{ document.url }}">{{ document.title }}</a>
+      </div>
     {% endif %}
     {% endfor %}
   </ol>
 </div>
 {% endfor %}
+
 <script>
-let selectedTag = window.location.hash;
-let tagLinks = document.querySelectorAll(".tag");
-  
-  tagLinks.forEach(function(link){
+  let tagLinks = document.querySelectorAll(".tag-box a");
+  let tagLists = document.querySelectorAll(".tag-list");
+  tagLinks.forEach(link=>{
     link.addEventListener("click",(event)=>{
-      alert(selectedTag);
       event.preventDefault();
-      document.querySelector('.tag-list').setAttribute("id", selectedTag);
-    })
+      let selectedTag = link.className;
+      tagLists.forEach((list)=>{
+        if(selectedTag === "All"){
+          list.removeAttribute("hidden");
+        }
+        else if(list.id === selectedTag){
+          list.removeAttribute("hidden");
+        }else{
+          list.setAttribute("hidden","true");
+        }
+      })
+    });
   })
 </script>

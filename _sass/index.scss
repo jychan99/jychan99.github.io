@@ -1,0 +1,27 @@
+section{
+    h3 {
+        margin-top: 40px;
+        font-size: 1.25rem;
+        cursor: pointer;
+        transition: font-size 0.5s ease-in-out;
+    }
+    h3:hover{
+        font-weight: bold;
+        color: red;
+    }
+}
+
+.tag-box {
+    text-transform: capitalize;
+    a{
+        text-decoration: none;
+        font-size: 1.2em;
+        transition: color 0.5s ease-in-out, font-size 0.5s ease-in-out, font-weight 0.5s ease-in-out;
+    }
+    a:hover{
+        background-color: white;
+        color:black;
+        font-weight: bold;
+        font-size: 1.5em;
+    }
+}

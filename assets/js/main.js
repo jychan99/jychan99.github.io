@@ -2,6 +2,19 @@ const light = '⚪',
       dark = '⚫';
 
 document.addEventListener("DOMContentLoaded", () => {
+  const posts = document.querySelectorAll('.post-wrapper');
+  const currentDate = new Date();
+
+  posts.forEach(post =>{
+  const postDate = new Date(post.getAttribute('datetime'));
+  const timeDifference = currentDate - postDate;
+  const threeDaysInMilliseconds = 3 * 24 * 60 * 60 * 1000;
+  if (timeDifference < threeDaysInMilliseconds) {
+      post.querySelector('a').style.fontWeight = 'bold';
+      post.querySelector('time').style.fontWeight = 'bold';
+  }
+  });
+  
   init();
 });
 
