@@ -12,7 +12,7 @@ title: Home
             <h3 class="home-page-heading">Latest Post</h3>
         </summary>
         <div class="parent">
-            {% for post in site.tags.News %}
+            {% for post in site.tags.news %}
             <div class="post-wrapper" datetime="{{ post.date | date: "%Y-%m-%d" }}">
                 <time class="post-date">{{ post.date | date: "%B %d, %Y" }}</time>
                 <a class="post-link" href="{{ post.url }}">{{ post.title }}</a>
@@ -27,7 +27,7 @@ title: Home
             <h3 class="home-page-heading">Monthly</h3>
         </summary>
         <div class="parent">
-            {% for post in site.tags.Monthly %}
+            {% for post in site.tags.IT %}
             <div class="post-wrapper" datetime="{{ post.date | date: "%Y-%m-%d" }}">
                 <time class="post-date">{{ post.date | date: "%B %d, %Y" }}</time>
                 <a class="post-link" href="{{ post.url }}">{{ post.title }}</a>
