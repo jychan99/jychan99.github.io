@@ -2,8 +2,7 @@
 layout: default
 title: Home
 ---
-{% assign alldocs = site.documents | sort:'date' | reverse %}
-{% assign alltags =  alldocs | map: 'tags' | join: ','  | split: ','  | group_by_exp: "tag","tag" %}
+{% assign latestposts = site.documents | sort:'date' | reverse | slice: 0,15 %}
 
 <h1>{{ "INDEX" | uppercase }}</h1>
 <hr>
@@ -14,7 +13,7 @@ title: Home
             <h3 class="home-page-heading">Latest Post</h3>
         </summary>
         <div class="parent">
-            {% for post in alldocs %}
+            {% for post in latestposts %}
             <div class="post-wrapper" datetime="{{ post.date | date: "%Y-%m-%d" }}">
                 <time class="post-date">{{ post.date | date: "%B %d, %Y" }}</time>
                 <a class="post-link" href="{{ post.url }}">{{ post.title }}</a>
