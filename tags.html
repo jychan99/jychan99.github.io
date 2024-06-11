@@ -10,16 +10,19 @@ title: Tags
 {% assign alltags =  alldocs | map: 'tags' | join: ','  | split: ','  | group_by_exp: "tag","tag" %}
 
 <div class="tag-box">
-  <a class="All" href="#">Total({{alldocs.size}})</a>
+  <a class="All" href="/tags">Total({{alldocs.size}})</a>
   <br>
     {% for tag in alltags %}
-      <a class="{{tag.name}}" href="#{{ tag.name | slugify }}">#{{ tag.name }}({{ tag.size }})</a>
+      <a href="/tags/{{tag.name | slugify }}">#{{ tag.name }}({{ tag.size }})</a>
     {% endfor %}
 </div>
 
 {% for tag in alltags %}
-<div class="tag-list" id="{{ tag.name }}">
-  <h2 class="nice-title">{{ tag.name }}</h2>
+<div class="tag-list" id="{{ tag.name | slugify }}">
+  <h2 class="nice-title">
+    <a href="/tags/{{tag.name | slugify }}" class="header-anchor" aria-hidden="true">#</a>
+    {{ tag.name }}
+  </h2>
   <ol>
     {% for document in alldocs %}
     {% if document.tags contains tag.name %}
@@ -34,6 +37,7 @@ title: Tags
 {% endfor %}
 
 <script>
+  /*
   let tagLinks = document.querySelectorAll(".tag-box a");
   let tagLists = document.querySelectorAll(".tag-list");
   tagLinks.forEach(link=>{
@@ -52,4 +56,23 @@ title: Tags
       })
     });
   })
+  */
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const tagLists = document.querySelectorAll(".tag-list");
+
+    const showTagList = (selectedTag) => {
+      tagLists.forEach(list => {
+        if (selectedTag === "Total" || list.id === selectedTag) {
+          list.removeAttribute("hidden");
+        } else {
+          list.setAttribute("hidden", "true");
+        }
+      });
+    };
+
+    // Get current tag from URL
+    const currentTag = window.location.pathname.split('/').pop();
+    showTagList(currentTag || "Total");
+  });
 </script>
