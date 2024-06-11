@@ -52,49 +52,4 @@ title: Tags
       })
     });
   })
-=======
----
-layout: default
-title: Tags
----
-
-<h1>Tags</h1>
-
-{% assign alldocs = site.documents %}
-{% assign alltags =  alldocs | map: 'tags' | join: ','  | split: ','  | group_by_exp: "tag","tag" %}
-
-<p>
-  Articles on similar topics are grouped together by tags. Click on any tag to find all the articles 'tagged' with that tag.
-</p>
-
-<ul class="tag-box">
-  <li><a class="" href="#">Posts : <span>{{alldocs.size}}</span></a></li>
-    {% for tag in alltags %}
-      <li><a class="{{tag.name}}" href="#{{ tag.name | slugify }}">{{ tag.name }} : <span>{{ tag.size }}</span></a></li>
-    {% endfor %}
-</ul>
-
-{% for tag in alltags %}
-<div class="tag-list">
-  <h2 class="nice-title" id="{{ tag.name }}">{{ tag.name }}</h2>
-  <ol>
-    {%- for document in alldocs -%}
-    {% if document.tags contains tag.name %}
-    <li><a href="{{ document.url }}">{{ document.title }}</a></li>
-    {% endif %}
-    {% endfor %}
-  </ol>
-</div>
-{% endfor %}
-<script>
-  let tagLinks = document.querySelectorAll(".tag-box a");
-  let tagLists = document.querySelectorAll(".tag-list");
-  tagLinks.forEach(function(link){
-    link.addEventListener("click",(event)=>{
-      event.preventDefault();
-      let selectedTag = link.className;
-      console.log(selectedTag);
-    });
-  })
->>>>>>> 17b1967e44c5cf957ba94dcc707e7653ad1bde7b
 </script>
