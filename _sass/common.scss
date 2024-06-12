@@ -3,7 +3,7 @@
   padding: 0;
 }
 
-html, body {
+html body{
   height: 100%;
 }
 
@@ -22,7 +22,13 @@ body {
 }
 
 footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   flex-shrink: 0;
+  opacity: 0.5; 
+  margin-top: 10px;
+  font-size: 0.8em;
 }
 
 *, iframe, img, video {

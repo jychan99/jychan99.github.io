@@ -9,6 +9,11 @@ section{
         font-weight: bold;
         color: red;
     }
+    .post-tag{
+        margin-left: 10px;
+        font-size: 0.8em;
+        opacity:0.5;
+    }
 }
 
 .tag-box {
@@ -16,12 +21,11 @@ section{
     a{
         text-decoration: none;
         font-size: 1.2em;
-        transition: color 0.5s ease-in-out, font-size 0.5s ease-in-out, font-weight 0.5s ease-in-out;
+        margin-right: 10px;
     }
     a:hover{
         background-color: white;
         color:black;
         font-weight: bold;
-        font-size: 1.5em;
     }
 }
